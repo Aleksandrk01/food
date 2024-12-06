@@ -1,0 +1,22 @@
+/* src/components/ProductList/ProductList.css */
+
+.product-list {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
+  }
+  
+  .product-item {
+    @apply bg-gray-800 p-4 rounded-md shadow-md flex flex-col items-center;
+  }
+  
+  .product-item img {
+    @apply w-24 h-24 object-cover rounded-full mb-2;
+  }
+  
+  .product-item h4 {
+    @apply text-lg font-semibold text-primary mb-1;
+  }
+  
+  .product-item p {
+    @apply text-gray-400 text-sm text-center;
+  }
+  

@@ -1,0 +1,47 @@
+
+/* src/index.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Импорт кастомных стилей */
+@import './css/components.css';
+@import './css/klaro.css';
+
+/* Добавление кастомного класса brightness-85 */
+@layer utilities {
+  .brightness-85 {
+    filter: brightness(0.85);
+  }
+}
+
+/* src/index.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Глобальные переменные */
+:root {
+  --dark1: #333;
+  --light1: #fafafa;
+  --green1: #1a936f;
+  --green2: #24cc9a;
+  --blue1: #2581c4;
+  --blue2: #459cdc;
+  --light2: #c8c8c8;
+  --light3: #a0a0a0;
+  --dark2: #5c5c5c;
+  --box-shadow-color: #48dfb2;
+  --border-radius: 4px;
+  --border-style: solid;
+  --border-width: 1px;
+  --font-size: 14px;
+  /* Добавьте остальные переменные по необходимости */
+}
+
+
+/* Импортируйте Klaro стили */
+@import './css/klaro.css';
+

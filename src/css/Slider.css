@@ -1,0 +1,18 @@
+/* src/components/Slider/Slider.css */
+
+.slider-section {
+    @apply my-20;
+  }
+  
+  .slider-slide {
+    @apply w-full h-80 flex items-center justify-center bg-center bg-cover relative;
+  }
+  
+  .slider-overlay {
+    @apply bg-primary bg-opacity-50 p-4 rounded;
+  }
+  
+  .slider-title {
+    @apply text-2xl text-white font-bold;
+  }
+  

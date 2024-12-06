@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Brother</title>
+
+    <!-- Определение конфигурации Klaro -->
+    <script>
+      window.klaroConfig = {
+        element: '#klaro', // Элемент для рендеринга уведомления
+        version: 1,
+        cookieName: 'klaro',
+        storageMethod: 'cookie',
+        default: true,
+        acceptAll: true,
+        hideDeclineAll: true,
+        translations: {
+          de: {
+            consentNotice: {
+              title: 'Cookies & Datenschutz',
+              description:
+                'Wir verwenden Cookies, um dir die beste Erfahrung auf unserer Website zu bieten.',
+              privacyPolicy: 'Unsere Datenschutzerklärung',
+            },
+            consentModal: {
+              title: 'Cookies & Datenschutz',
+              description:
+                'Wir verwenden Cookies, um dir die beste Erfahrung auf unserer Website zu bieten. Du kannst auswählen, welche Cookies du erlauben möchtest.',
+            },
+          },
+        },
+        services: [
+          {
+            name: 'essential',
+            title: 'Essentielle Cookies',
+            purposes: ['notwendig'],
+            default: true,
+          },
+          {
+            name: 'analytics',
+            title: 'Analyse-Cookies',
+            purposes: ['statistik'],
+            optOut: true,
+          },
+          // Добавьте другие категории по необходимости
+        ],
+      };
+    </script>
+
+    <!-- Подключение стилей Klaro -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/klaro/dist/klaro.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Подключение скрипта Klaro -->
+    <script src="https://cdn.jsdelivr.net/npm/klaro/dist/klaro.js"></script>
+    <script type="module" src="/src/main.jsx"></script>
+
+  </body>
+</html>

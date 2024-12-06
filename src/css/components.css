@@ -1,0 +1,12 @@
+/* src/styles/components.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Кастомные утилиты */
+@layer utilities {
+  .brightness-85 {
+    filter: brightness(0.85);
+  }
+}

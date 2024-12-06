@@ -1,0 +1,26 @@
+/* src/components/ProductCard/ProductCard.css */
+
+.product-card {
+    @apply bg-white p-5 rounded-lg shadow-md flex flex-col items-center;
+  }
+  
+  .product-image {
+    @apply w-24 h-24 object-cover rounded-full mb-2;
+  }
+  
+  .product-name {
+    @apply text-xl font-semibold text-primary mb-1;
+  }
+  
+  .product-description {
+    @apply text-gray-600 text-sm text-center;
+  }
+  
+  .product-price {
+    @apply text-primary font-bold mt-2 block;
+  }
+  
+  .product-button {
+    @apply mt-4 w-full bg-primary text-white py-2 rounded hover:bg-primary-dark transition-colors;
+  }
+  

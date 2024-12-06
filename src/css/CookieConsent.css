@@ -1,0 +1,35 @@
+/* src/components/CookieConsent/CookieConsent.css */
+
+/* Основные стили для Klaro */
+#klaro {
+    /* Дополнительные стили при необходимости */
+  }
+  
+  /* Кастомизация кнопок согласия */
+  .klaro .cm-btn-success,
+  .klaro .cm-btn-accept-all {
+    @apply bg-primary text-white;
+  }
+  
+  .klaro .cm-btn-success:hover,
+  .klaro .cm-btn-accept-all:hover {
+    @apply bg-primary-dark;
+  }
+  
+  /* Переопределение заголовков */
+  .klaro .cm-header a {
+    @apply text-primary;
+  }
+  
+  /* Переопределение переключателей */
+  .klaro .cookie-modal .cm-list-input.required:checked + .cm-list-label .slider,
+  .klaro .context-notice .cm-list-input.required:checked + .cm-list-label .slider,
+  .klaro .cookie-notice .cm-list-input.required:checked + .cm-list-label .slider,
+  .klaro .cookie-modal .cm-list-input:checked + .cm-list-label .slider,
+  .klaro .context-notice .cm-list-input:checked + .cm-list-label .slider,
+  .klaro .cookie-notice .cm-list-input:checked + .cm-list-label .slider {
+    @apply bg-primary brightness-85; /* Используем кастомный класс brightness-85 */
+  }
+  
+  /* Дополнительные стили по необходимости */
+  

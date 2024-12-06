@@ -1,0 +1,42 @@
+/* src/components/Cart/Cart.css */
+
+.cart-button {
+    @apply fixed bottom-5 right-5 bg-primary text-white p-4 rounded-full shadow-lg hover:bg-primary-dark transition-colors flex items-center gap-2;
+  }
+  
+  .cart-modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-end;
+  }
+  
+  .cart-modal {
+    @apply bg-white w-full max-w-md h-full p-6 overflow-y-auto relative;
+  }
+  
+  .cart-close-button {
+    @apply text-gray-500 hover:text-gray-700 text-2xl absolute top-4 right-4;
+  }
+  
+  .cart-title {
+    @apply text-2xl font-bold mb-6 text-primary;
+  }
+  
+  .cart-empty {
+    @apply text-center text-gray-700;
+  }
+  
+  .cart-items {
+    @apply space-y-4;
+  }
+  
+  .cart-item {
+    @apply flex justify-between items-center;
+  }
+  
+  .cart-total {
+    @apply mt-6 flex justify-between items-center text-lg font-bold text-gray-700;
+  }
+  
+  .cart-checkout-button {
+    @apply mt-6 w-full bg-primary text-white py-3 rounded-md hover:bg-primary-dark transition-colors;
+  }
+  
