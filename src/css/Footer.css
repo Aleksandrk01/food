@@ -77,4 +77,19 @@ width: 10%
   .footer-products .product-item p {
     @apply text-gray-400 text-sm text-center;
   }
+  @media(max-width: 750px ){
+    .footer-logo{
+      opacity: 0.1;
+      position: absolute;
+      width: 65%;
+      left: 15%;
+    }
+    .footer-container{
+      flex-direction: column;
+    }
+  }
+
+  @media(max-width: 750px ){
   
+  
+  }
