@@ -14,7 +14,7 @@
     @apply flex flex-col;
   }
   .footer-section-logo{
-    width: 40%;
+    width: 80%;
   }
 
   .footer-logo {
@@ -81,8 +81,8 @@ width: 10%
     .footer-logo{
       opacity: 0.1;
       position: absolute;
-      width: 65%;
-      left: 15%;
+      width: 55%;
+      left: 20%;
     }
     .footer-container{
       flex-direction: column;
@@ -91,5 +91,7 @@ width: 10%
 
   @media(max-width: 750px ){
   
-  
+    .footer-container{
+      width: 90%;
+    }
   }

@@ -2,14 +2,14 @@
 import React from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import SlideImage1 from '../assets/images/image.png';
-import SlideImage2 from '../assets/images/image.png';
+// import SlideImage1 from '../assets/images/image.png';
+import SlideImage2 from '../assets/images/menu.jpg';
 import '../css/Slider.css'
 // Добавьте больше изображений по необходимости
 
 const Slider = () => {
   const slides = [
-    { id: 1, image: SlideImage1, alt: 'Slide 1' },
+    { id: 1, image: SlideImage2, alt: 'Slide 1' },
     { id: 2, image: SlideImage2, alt: 'Slide 2' },
     // Добавьте больше слайдов
   ];
