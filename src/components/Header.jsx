@@ -51,7 +51,7 @@ const Header = ({ onSearch }) => { // Принимаем onSearch как про�
         </div>
 
         {/* Поисковая строка */}
-        <div className="flex-1 mx-5 hidden sm:block relative">
+        <div className="flex-1 mx-5 block relative">
           <input
             type="text"
             name="search_product"
