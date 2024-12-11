@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { CartContext } from './CartContext'; // Правильный путь
 import Cart from './Cart'; // Правильный путь
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'; // Импорт иконок
+import debounce from 'lodash.debounce';
 
 const Header = ({ onSearch }) => { // Принимаем onSearch как проп
   const [isCartOpen, setIsCartOpen] = useState(false); // Состояние для управления видимостью корзины
@@ -14,6 +15,26 @@ const Header = ({ onSearch }) => { // Принимаем onSearch как про�
   const { cartItems } = useContext(CartContext);
   const cartRef = useRef();
   const searchRef = useRef();
+
+  // Дебаунсинг поиска
+  const debouncedSearch = useRef(
+    debounce((query) => {
+      onSearch(query);
+    }, 300)
+  ).current;
+
+  // Обработчик изменения ввода в поиске
+  const handleInputChange = (e) => {
+    const query = e.target.value;
+    debouncedSearch(query);
+  };
+
+  // Отмена дебаунсинга при размонтировании компонента
+  useEffect(() => {
+    return () => {
+      debouncedSearch.cancel();
+    };
+  }, [debouncedSearch]);
 
   // Обработчик для закрытия корзины при клике вне её области
   useEffect(() => {
@@ -71,12 +92,6 @@ const Header = ({ onSearch }) => { // Принимаем onSearch как про�
       document.removeEventListener('keydown', handleEsc);
     };
   }, [isSearchOpen]);
-
-  // Обработчик изменения ввода в поиске
-  const handleInputChange = (e) => {
-    const query = e.target.value;
-    onSearch(query);
-  };
 
   return (
     <header className="bg-primary-dark fixed top-0 left-0 w-full z-50 shadow-md">
