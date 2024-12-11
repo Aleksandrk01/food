@@ -4,33 +4,73 @@ import '../css/Header.css'; // Импортируем стили
 import Logo from '../assets/images/logo.png';
 import word from '../assets/images/white.png';
 import { Link } from 'react-router-dom';
-import { CartContext } from './CartContext'; // Убедитесь, что путь корректен
-import Cart from './Cart'; // Импортируем компонент корзины
-import { toast } from 'react-toastify'; // Для уведомлений (опционально)
+import { CartContext } from './CartContext'; // Правильный путь
+import Cart from './Cart'; // Правильный путь
+import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'; // Импорт иконок
 
 const Header = ({ onSearch }) => { // Принимаем onSearch как проп
   const [isCartOpen, setIsCartOpen] = useState(false); // Состояние для управления видимостью корзины
+  const [isSearchOpen, setIsSearchOpen] = useState(false); // Состояние для управления видимостью поиска на мобильных
   const { cartItems } = useContext(CartContext);
   const cartRef = useRef();
+  const searchRef = useRef();
 
   // Обработчик для закрытия корзины при клике вне её области
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutsideCart = (event) => {
       if (cartRef.current && !cartRef.current.contains(event.target)) {
         setIsCartOpen(false);
       }
     };
 
     if (isCartOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutsideCart);
     } else {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutsideCart);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutsideCart);
     };
   }, [isCartOpen]);
+
+  // Обработчик для закрытия поиска при клике вне его области
+  useEffect(() => {
+    const handleClickOutsideSearch = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setIsSearchOpen(false);
+      }
+    };
+
+    if (isSearchOpen) {
+      document.addEventListener('mousedown', handleClickOutsideSearch);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutsideSearch);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideSearch);
+    };
+  }, [isSearchOpen]);
+
+  // Обработчик нажатия клавиши Esc для закрытия поиска
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.key === 'Escape') {
+        setIsSearchOpen(false);
+      }
+    };
+
+    if (isSearchOpen) {
+      document.addEventListener('keydown', handleEsc);
+    } else {
+      document.removeEventListener('keydown', handleEsc);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+    };
+  }, [isSearchOpen]);
 
   // Обработчик изменения ввода в поиске
   const handleInputChange = (e) => {
@@ -40,18 +80,19 @@ const Header = ({ onSearch }) => { // Принимаем onSearch как про�
 
   return (
     <header className="bg-primary-dark fixed top-0 left-0 w-full z-50 shadow-md">
-      <div className="max-w-desktop mx-auto flex items-center justify-between h-20 px-5 lg:px-10 header-block">
-        <div className="flex-shrink-0">
+      <div className="max-w-desktop mx-auto flex items-center justify-between h-20 px-5 lg:px-10">
+        {/* Логотипы */}
+        <div className="flex-shrink-0 flex items-center">
           <Link to="/">
-            <img src={word} alt="Food Brother Logo" className="h-10 w-auto" />
+            <img src={word} alt="Food Brother Logo" className="h-10 w-auto mr-2" />
           </Link>
           <Link to="/">
             <img src={Logo} alt="Food Brother Logo" className="h-10 w-auto" />
           </Link>
         </div>
 
-        {/* Поисковая строка */}
-        <div className="flex-1 mx-5 block relative">
+        {/* Поисковая строка для десктопа */}
+        <div className="flex-1 mx-5 hidden sm:block relative">
           <input
             type="text"
             name="search_product"
@@ -61,21 +102,19 @@ const Header = ({ onSearch }) => { // Принимаем onSearch как про�
           />
           <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">
             {/* Иконка поиска */}
-            <svg
-              aria-hidden="true"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              className="w-5 h-5"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
+            <MagnifyingGlassIcon className="w-5 h-5" />
           </div>
+        </div>
+
+        {/* Поисковая иконка для мобильных устройств */}
+        <div className="flex-1 mx-5 sm:hidden relative flex justify-end">
+          <button
+            onClick={() => setIsSearchOpen(true)}
+            className="text-gray-300 hover:text-primary transition-colors focus:outline-none"
+            aria-label="Suche öffnen"
+          >
+            <MagnifyingGlassIcon className="w-6 h-6" />
+          </button>
         </div>
 
         {/* Кнопка корзины */}
@@ -86,12 +125,19 @@ const Header = ({ onSearch }) => { // Принимаем onSearch как про�
             aria-label="Warenkorb anzeigen"
           >
             {/* SVG Иконка Корзины */}
-            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-              width="28.000000pt" height="28.000000pt" viewBox="0 0 512.000000 512.000000"
-              preserveAspectRatio="xMidYMid meet">
-              <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-                fill="#e5e7eb" stroke="none">
-                {/* Путь SVG */}
+            <svg
+              version="1.0"
+              xmlns="http://www.w3.org/2000/svg"
+              width="28.000000pt"
+              height="28.000000pt"
+              viewBox="0 0 512.000000 512.000000"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <g
+                transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                fill="#e5e7eb"
+                stroke="none"
+              >
                 <path d="M232 4887 c-21 -22 -22 -32 -22 -179 0 -138 2 -158 19 -179 l19 -24
                 374 -5 373 -5 311 -1448 c171 -797 318 -1464 327 -1482 25 -53 86 -114 141
                 -143 l51 -27 1327 -3 1326 -2 21 26 c19 24 21 40 21 179 0 136 -2 155 -19 176
@@ -154,6 +200,29 @@ const Header = ({ onSearch }) => { // Принимаем onSearch как про�
           )}
         </div>
       </div>
+
+      {/* Поисковая строка для мобильных устройств */}
+      {isSearchOpen && (
+        <div className="absolute top-20 left-0 w-full sm:w-auto sm:left-auto sm:right-0 sm:top-0 sm:absolute bg-primary-dark sm:bg-transparent p-4 sm:p-0">
+          <div ref={searchRef} className="flex items-center max-w-lg mx-auto">
+            <input
+              type="text"
+              name="search_product_mobile"
+              placeholder="Gericht suchen"
+              className="w-full h-10 pl-3 pr-10 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+              onChange={handleInputChange} // Добавляем обработчик
+              autoFocus
+            />
+            <button
+              onClick={() => setIsSearchOpen(false)}
+              className="ml-2 text-gray-300 hover:text-primary transition-colors focus:outline-none"
+              aria-label="Suche schließen"
+            >
+              <XMarkIcon className="w-6 h-6" />
+            </button>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
