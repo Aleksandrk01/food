@@ -1,7 +1,7 @@
 // src/components/ProductCard/ProductCard.jsx
 import React, { useContext } from 'react';
 import '../css/ProductCard.css'; // Импортируем стили
-import { CartContext } from './CartContext';
+import { CartContext } from './CartContext'; // Исправьте путь, если необходимо
 import { toast } from 'react-toastify';
 
 const ProductCard = ({ product }) => {

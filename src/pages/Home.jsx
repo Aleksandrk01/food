@@ -7,7 +7,7 @@ import Slider from '../components/Slider';
 import Footer from '../components/Footer';
 import ProductList from '../components/ProductList';
 
-const Home = () => {
+const Home = ({products}) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -17,7 +17,7 @@ const Home = () => {
           {/* <Navigation /> */}
           <section className="mt-10">
             <h2 className="text-3xl font-bold text-primary mb-5">Unsere Produkte</h2>
-            <ProductList />
+            <ProductList products={products} />
           </section>
         </div>
       </main>
