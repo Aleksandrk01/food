@@ -3,14 +3,17 @@ import React from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 // import SlideImage1 from '../assets/images/image.png';
-import SlideImage2 from '../assets/images/menu.jpg';
+import SlideImage2 from '../assets/images/product8.webp';
+import SlideImage3 from '../assets/images/product7.webp';
+import SlideImage4 from '../assets/images/product9.webp';
 import '../css/Slider.css'
 // Добавьте больше изображений по необходимости
 
 const Slider = () => {
   const slides = [
-    { id: 1, image: SlideImage2, alt: 'Slide 1' },
-    { id: 2, image: SlideImage2, alt: 'Slide 2' },
+    { id: 2, image: SlideImage2, alt: 'Slide 1' },
+    { id: 3, image: SlideImage4, alt: 'Slide 3' },
+    { id: 1, image: SlideImage3, alt: 'Slide 2' },
     // Добавьте больше слайдов
   ];
 

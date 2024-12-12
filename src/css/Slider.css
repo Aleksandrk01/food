@@ -1,18 +1,20 @@
-/* src/components/Slider/Slider.css */
+.slider-slide {
+  @apply w-full h-80 flex items-center justify-center bg-center  relative;
+  background-size: cover; /* Заполнить контейнер, сохраняя пропорции */
+  background-position: center; /* Центрировать изображение */
+  background-repeat: no-repeat;
+}
 
-.slider-section {
-    @apply my-20;
-  }
-  
-  .slider-slide {
-    @apply w-full h-80 flex items-center justify-center bg-center bg-cover relative;
-  }
-  
-  .slider-overlay {
-    @apply bg-primary bg-opacity-50 p-4 rounded;
-  }
-  
-  .slider-title {
-    @apply text-2xl text-white font-bold;
-  }
-  
+.slider-overlay {
+  @apply absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-40;
+  background-size: cover; /* Заполнить контейнер, сохраняя пропорции */
+  background-position: center; /* Центрировать изображение */
+  background-repeat: no-repeat;
+}
+
+.slider-title {
+  @apply text-3xl text-white font-bold bg-primary p-2 rounded-md;
+  background-size: cover; /* Заполнить контейнер, сохраняя пропорции */
+  background-position: center; /* Центрировать изображение */
+  background-repeat: no-repeat;
+}

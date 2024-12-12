@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
@@ -8,19 +7,39 @@ import Header from './components/Header';
 import Cart from './components/Cart';
 import CookieConsent from './components/CookieConsent';
 
-// Правильный импорт данных о продуктах
-import products from './data/products'; // Относительный путь
+// Импорт данных о продуктах
+import products from './data/products';
 
 const App = () => {
-  const [filteredProducts, setFilteredProducts] = useState(products); // Состояние для фильтрованных продуктов
+  // Создаём начальное состояние — полный список категорий с их товарами
+  const [filteredProducts, setFilteredProducts] = useState(products);
 
   // Функция фильтрации продуктов
   const handleSearch = (query) => {
-    const filtered = products.filter((product) =>
-      product.name.toLowerCase().includes(query.toLowerCase()) ||
-      product.description.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredProducts(filtered);
+    if (!query) {
+      // Если строка поиска пустая, возвращаем все категории с товарами
+      setFilteredProducts(products);
+      return;
+    }
+
+    // Фильтруем товары в каждой категории
+    const filtered = products.map((category) => {
+      const filteredItems = category.items.filter(
+        (item) =>
+          item.name.toLowerCase().includes(query.toLowerCase()) ||
+          item.description.toLowerCase().includes(query.toLowerCase())
+      );
+
+      return {
+        ...category,
+        items: filteredItems,
+      };
+    });
+
+    // Удаляем категории, в которых нет подходящих товаров
+    const nonEmptyCategories = filtered.filter((category) => category.items.length > 0);
+
+    setFilteredProducts(nonEmptyCategories);
   };
 
   return (

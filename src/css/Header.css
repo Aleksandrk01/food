@@ -1,32 +1,42 @@
-/* src/components/Header/Header.css */
+/* src/css/Header.css */
 
 .header {
-    @apply fixed top-0 z-50 w-full bg-primary-dark shadow-md;
-  }
-  
-  .header-container {
-    @apply mx-auto flex h-20 items-center gap-4 px-5 lg:px-10 max-w-desktop;
-  }
-  
-  .header-logo img {
-    @apply max-w-full max-h-full;
-  }
-  
-  .header-search input {
-    @apply h-10 w-full rounded-md pl-3 pr-10 text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary;
-  }
-  
-  .header-search .search-icon {
-    @apply absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500;
-  }
-  
-  .header-search svg {
-    @apply w-5 h-5;
-  }
-  .flex-shrink-0{
-    display: flex;
-  }
+  @apply fixed top-0 z-50 w-full bg-primary-dark shadow-md;
+}
 
-  .header-block{
-    gap: 5%;
-  }
+.header-container {
+  @apply mx-auto flex h-20 items-center gap-4 px-5 lg:px-10 max-w-desktop;
+}
+
+.header-logo img {
+  @apply max-w-full max-h-full;
+}
+
+.header-search input {
+  @apply h-10 w-full rounded-md pl-3 pr-10 text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary;
+}
+
+.header-search .search-icon {
+  @apply absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500;
+}
+
+.header-search svg {
+  @apply w-5 h-5;
+}
+
+.flex-shrink-0 {
+  display: flex;
+}
+
+.header-block {
+  gap: 5%;
+}
+
+/* Стили для бургер-меню */
+.header .relative > .absolute {
+  @apply bg-primary-dark rounded-md shadow-lg;
+}
+
+.header a {
+  @apply block px-4 py-2 text-gray-300 hover:bg-gray-700;
+}

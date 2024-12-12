@@ -28,7 +28,6 @@
   .klaro .cookie-modal .cm-list-input:checked + .cm-list-label .slider,
   .klaro .context-notice .cm-list-input:checked + .cm-list-label .slider,
   .klaro .cookie-notice .cm-list-input:checked + .cm-list-label .slider {
-    @apply bg-primary brightness-85; /* Используем кастомный класс brightness-85 */
   }
   
   /* Дополнительные стили по необходимости */

@@ -6,15 +6,17 @@ import word from '../assets/images/white.png';
 import { Link } from 'react-router-dom';
 import { CartContext } from './CartContext'; // Правильный путь
 import Cart from './Cart'; // Правильный путь
-import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'; // Импорт иконок
+import { MagnifyingGlassIcon, XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'; // Импорт иконки бургер-меню
 import debounce from 'lodash.debounce';
 
 const Header = ({ onSearch }) => { // Принимаем onSearch как проп
   const [isCartOpen, setIsCartOpen] = useState(false); // Состояние для управления видимостью корзины
   const [isSearchOpen, setIsSearchOpen] = useState(false); // Состояние для управления видимостью поиска на мобильных
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Состояние для управления бургер-меню
   const { cartItems } = useContext(CartContext);
   const cartRef = useRef();
   const searchRef = useRef();
+  const menuRef = useRef();
 
   // Дебаунсинг поиска
   const debouncedSearch = useRef(
@@ -93,6 +95,25 @@ const Header = ({ onSearch }) => { // Принимаем onSearch как про�
     };
   }, [isSearchOpen]);
 
+  // Обработчик для закрытия меню при клике вне его области
+  useEffect(() => {
+    const handleClickOutsideMenu = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutsideMenu);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutsideMenu);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideMenu);
+    };
+  }, [isMenuOpen]);
+
   return (
     <header className="bg-primary-dark fixed top-0 left-0 w-full z-50 shadow-md">
       <div className="max-w-desktop mx-auto flex items-center justify-between h-20 px-5 lg:px-10">
@@ -132,6 +153,30 @@ const Header = ({ onSearch }) => { // Принимаем onSearch как про�
           </button>
         </div>
 
+        <div className="relative">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-gray-300 hover:text-primary transition-colors focus:outline-none ml-4"
+            aria-label="Меню навигации"
+          >
+            <Bars3Icon className="w-6 h-6" />
+          </button>
+          {/* Меню */}
+          {isMenuOpen && (
+            <div ref={menuRef} className="absolute right-0 mt-2 w-48 bg-primary-dark rounded-md shadow-lg py-2">
+              <a href="#beef-burger" className="block px-4 py-2 text-gray-300 hover:bg-gray-700" onClick={() => setIsMenuOpen(false)}>
+                Beef Burger
+              </a>
+              <a href="#chicken-burger" className="block px-4 py-2 text-gray-300 hover:bg-gray-700" onClick={() => setIsMenuOpen(false)}>
+                Chicken Burger
+              </a>
+              <a href="#veggie-burger" className="block px-4 py-2 text-gray-300 hover:bg-gray-700" onClick={() => setIsMenuOpen(false)}>
+                Veggie Burger
+              </a>
+            </div>
+          )}
+        </div>
+
         {/* Кнопка корзины */}
         <div className="ml-4 relative">
           <button
@@ -139,7 +184,6 @@ const Header = ({ onSearch }) => { // Принимаем onSearch как про�
             onClick={() => setIsCartOpen(!isCartOpen)} // Переключение состояния корзины
             aria-label="Warenkorb anzeigen"
           >
-            {/* SVG Иконка Корзины */}
             <svg
               version="1.0"
               xmlns="http://www.w3.org/2000/svg"
